@@ -2,7 +2,7 @@
 
 set -e
 
-REPO_URL="git@github.com:nickojs/omni-navigator.git"
+REPO_URL="git@github.com:omni-ecosystem/omni-navigator.git"
 INSTALL_DIR="$HOME/.omni-ecosystem"
 TARGET_DIR="$INSTALL_DIR/omni-navigator"
 UI_KIT_DIR="$INSTALL_DIR/omni-ui-kit"
