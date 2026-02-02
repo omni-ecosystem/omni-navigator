@@ -2,19 +2,26 @@
 
 Interactive terminal filesystem browser for **bash**. Provides directory and file browsing with pagination, keyboard navigation, file marking, and directory creation.
 
-**Requires bash.** Uses bash-specific features (`read -n`, `declare -g`, `local -n` namerefs) that are not compatible with zsh.
+**Requires bash.** Uses bash-specific features, such as `read -n`, `declare -g`, `local -n` namerefs, etc.
+
+## Installation
+
+Run the install script to clone the repository to `~/.omni-ecosystem/omni-navigator`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/omni-ecosystem/omni-navigator/refs/heads/main/install.sh | bash
+```
+
+The script will automatically install the [omni-ui-kit](https://github.com/omni-ecosystem/omni-ui-kit) dependency if not already present. Running the script again will update an existing installation. To remove, run `./uninstall.sh` from the installation directory.
 
 ## Dependencies
 
-Requires [omni-ui-kit](../omni-ui-kit/) (color variables and UI functions like `print_header`, `print_color`, etc).
+Requires [omni-ui-kit](https://github.com/omni-ecosystem/omni-ui-kit) — color variables and UI functions
 
 ## Standalone usage
 
-Must be run from a bash shell. If your default shell is zsh, start bash first.
-
 ```bash
-# From bash (run `bash` first if you're in zsh)
-source libs/omni-ui-kit/index.sh && source libs/omni-navigator/index.sh
+source omni-navigator/index.sh
 
 # Directory browser (default)
 show_interactive_browser
@@ -26,7 +33,7 @@ show_interactive_browser "files"
 One-liner from any shell:
 
 ```bash
-bash -ic 'source libs/omni-ui-kit/index.sh && source libs/omni-navigator/index.sh && show_interactive_browser'
+bash -ic 'source omni-navigator/index.sh && show_interactive_browser'
 ```
 
 After the browser exits, check these globals for the result:
