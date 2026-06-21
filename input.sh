@@ -101,10 +101,23 @@ handle_browsing_key() {
                     print_success "Selected ${#MARKED_FILES[@]} file(s)"
                     return 1  # Signal selection made
                 else
-                    echo ""
-                    print_warning "No files marked. Use 'm' to mark files."
-                    sleep 1
-                    return 0
+                    # No marked files - auto-mark the current item if it's a file
+                    local selected_index=$((CURRENT_SELECTION - 1))
+                    local item_type="${NAV_ITEM_TYPES[selected_index]:-dir}"
+                    local item_path="${directories[selected_index]}"
+
+                    if [ "$item_type" = "file" ]; then
+                        local abs_path=$(realpath "$item_path")
+                        MARKED_FILES=("$abs_path")
+                        echo ""
+                        print_success "Selected 1 file(s)"
+                        return 1  # Signal selection made
+                    else
+                        echo ""
+                        print_warning "No files marked. Use 'm' to mark files."
+                        sleep 1
+                        return 0
+                    fi
                 fi
             else
                 # Directory mode: select current directory as projects directory
